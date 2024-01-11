@@ -1,23 +1,22 @@
 ﻿using Domain.Command;
-using Domain.Entidades;
 using Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Service
 {
     public class VeiculoService : IVeiculoService
     {
+        private readonly IVeiculoRepository _repository;
+        public VeiculoService(IVeiculoRepository repository)
+        {
+            _repository = repository;
+        }
+
         public void GetAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<string> PostAsync(Veiculo command)
+        public async Task<string> PostAsync(VeiculoCommand command)
         {
             int AnoAtual = DateTime.Now.Year;
 
@@ -34,21 +33,12 @@ namespace Service.Service
                 || command.TipoVeiculo != Domain.Enums.ETipoVeiculo.Picape
                 || command.TipoVeiculo != Domain.Enums.ETipoVeiculo.muscle
                 )
-                
-            return await _veiculoRepository.PostAsync(command);
+                return "O tipo de veiculo não é permitido";
+
+            return await _repository.PostAsync(command);
         }
 
         public void PostAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task PostAsync(VeiculoCommand command)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IVeiculoService.PostAsync(VeiculoCommand command)
         {
             throw new NotImplementedException();
         }
