@@ -16,6 +16,16 @@ namespace Service.Service
             throw new NotImplementedException();
         }
 
+        public void GetVeiculosAlugados()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetVeiculosDisponiveis()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<string> PostAsync(VeiculoCommand command)
         {
             int AnoAtual = DateTime.Now.Year;
