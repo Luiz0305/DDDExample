@@ -41,9 +41,9 @@ namespace Application.Controllers
         [HttpGet]
         [Route("VeiculosDisponiveis")]
 
-        public async Task<IActionResult> GetVeiculosDisponiveis()
+        public async Task<IActionResult> GetVeiculosDisponiveisAsync()
         {
-            return Ok();
+            return Ok(await _veiculoService.GetVeiculosDisponiveisAsync());
         }
 
         [HttpGet]

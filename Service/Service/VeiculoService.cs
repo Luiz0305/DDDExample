@@ -21,9 +21,13 @@ namespace Service.Service
             throw new NotImplementedException();
         }
 
-        public void GetVeiculosDisponiveis()
+        public async Task<IEnumerable<VeiculoCommand>> GetVeiculosDisponiveisAsync()
         {
-            throw new NotImplementedException();
+            return await _repository.GetVeiculosDisponiveisAsync();
+        }
+        public async Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync()
+        {
+            return await _repository.GetVeiculosAlugadosAsync();
         }
 
         public async Task<string> PostAsync(VeiculoCommand command)

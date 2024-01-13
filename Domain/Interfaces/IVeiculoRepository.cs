@@ -16,7 +16,8 @@ namespace Domain.Interfaces
 
         void GetAsync();
 
-        Task<IEnumerable<VeiculoCommand> GetVeiculosAlugadosAsync();
+        Task<IEnumerable<VeiculoCommand>> GetVeiculosDisponiveisAsync();
+        Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync();
 
     }
 }

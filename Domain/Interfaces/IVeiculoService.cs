@@ -14,8 +14,9 @@ namespace Domain.Interfaces
         void PostAsync();
         void GetAsync();
 
-        Task<IEnumerable<VeiculoCommand> GetVeiculosAlugadosAsync();
-        
-        
+        Task<IEnumerable<VeiculoCommand>> GetVeiculosDisponiveisAsync();
+        Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync();
+
+
     }
 }

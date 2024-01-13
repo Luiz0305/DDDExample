@@ -10,13 +10,6 @@ namespace Infrastructure.repository
     {
         private string stringconnection = "";
         
-        
-                   
-        public void GetAsync()
-        {
-
-        }
-
         string Conexao = @"Server=(localdb)\mssqllocaldb;Database=AluguelVeiculos;Trusted_Connection=True;MultipleActiveResultSets=True";
 
         public async Task<string> PostAsync(VeiculoCommand command)
@@ -45,6 +38,25 @@ namespace Infrastructure.repository
         {
             throw new NotImplementedException();
         }
+        public void GetAsync()
+        {
 
+        }
+        public async Task<IEnumerable<VeiculoCommand>> GetVeiculosDisponiveisAsync()
+        {
+            string queryBuscarVeiculosDisponiveis = @"select * from [AluguelVeiculos].[dbo].[Veiculo] where Alugado = 0";
+            using (SqlConnection conn = new SqlConnection(Conexao))
+            {
+                return conn.QueryAsync<VeiculoCommand>(queryBuscarVeiculosDisponiveis).Result.ToList();
+            }
+        }
+        public async Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync()
+        {
+            string queryBuscarVeiculosAlugados = @"select * from [AluguelVeiculos].[dbo].[Veiculo] where Alugado = 1";
+            using (SqlConnection conn = new SqlConnection(Conexao))
+            {
+                return conn.QueryAsync<VeiculoCommand>(queryBuscarVeiculosAlugados).Result.ToList();
+            }
+        }
     }
 }
