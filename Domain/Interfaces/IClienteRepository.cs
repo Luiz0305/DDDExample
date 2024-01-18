@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IClienteService
+    public interface IClienteRepository
     {
         Task<string> PostAsync(ClienteCommand command);
 
         void PostAsync();
+
         void GetAsync();
     }
 }

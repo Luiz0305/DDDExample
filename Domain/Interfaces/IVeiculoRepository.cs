@@ -1,5 +1,6 @@
 ﻿using Domain.Command;
 using Domain.Entidades;
+using Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Domain.Interfaces
 
         Task<IEnumerable<VeiculoCommand>> GetVeiculosDisponiveisAsync();
         Task<IEnumerable<VeiculoCommand>> GetVeiculosAlugadosAsync();
+        Task<VeiculoPrecoCommand> GetPrecoDiaria(ETipoVeiculo tipoVeiculo); 
 
     }
 }

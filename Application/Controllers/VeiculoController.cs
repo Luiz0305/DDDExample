@@ -1,4 +1,5 @@
 ﻿using Domain.Command;
+using Domain.Enums;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,9 @@ namespace Application.Controllers
         [HttpGet]
         [Route("SimularAluguel")]
 
-        public IActionResult GetAsync(int id)
+        public async Task<IActionResult> GetAsync(int DiasSimulacaoAluguel, ETipoVeiculo tipoVeiculo)
         {
-            return Ok();
+            return Ok(await _veiculoService.SimularVeiculoAluguel(DiasSimulacaoAluguel, tipoVeiculo));
         }
 
         [HttpPost]

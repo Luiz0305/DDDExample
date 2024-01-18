@@ -1,5 +1,7 @@
 ﻿using Domain.Command;
+using Domain.Enums;
 using Domain.Interfaces;
+using Domain.ViwModel;
 
 namespace Service.Service
 {
@@ -56,5 +58,26 @@ namespace Service.Service
         {
             throw new NotImplementedException();
         }
+
+        public async Task<SimularVeiculoAluguelViwModel> SimularVeiculoAluguel(int totalDiasSimulado, ETipoVeiculo tipoVeiculo)
+        {
+            var veiculoPreco = await _repository.GetPrecoDiaria(tipoVeiculo);
+            Double taxaEstadual = 10.50;
+            Double taxaFederal = 3.5;
+            Double taxaMunicipal = 13.5;
+
+            var simulacao = new SimularVeiculoAluguelViwModel();
+            simulacao.TotalDiasSimulado = totalDiasSimulado;
+            simulacao.Taxas = (decimal)(taxaMunicipal + taxaEstadual + taxaFederal);
+            simulacao.TipoVeiculo = tipoVeiculo;
+            simulacao.ValorDiaria = veiculoPreco.Preco;
+            simulacao.ValorTotal = (totalDiasSimulado * veiculoPreco.Preco) + simulacao.Taxas;
+
+            if (totalDiasSimulado > veiculoPreco.PeriodoMaximoAluguel)
+                return null;
+
+            return simulacao;
+        }
+
     }
 }
